@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Insert_Knife.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/jaccuse")]
     [ApiController]
     public class GuessController : ControllerBase
     {

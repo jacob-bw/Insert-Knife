@@ -7,5 +7,7 @@ namespace Insert_Knife.Models
 {
     public class Suspect
     {
+        public int SuspectId { get; set; }
+        public string SuspectName { get; set; }
     }
 }

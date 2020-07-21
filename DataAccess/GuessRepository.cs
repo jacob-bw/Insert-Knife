@@ -16,6 +16,5 @@ namespace Insert_Knife.DataAccess
             ConnectionString = config.GetConnectionString("InsertKnife");
         }
 
-        public Guess 
     }
 }

@@ -74,10 +74,20 @@ namespace Insert_Knife.DataAccess
 
         public User SaveGame(int currentRoomId, int currentGameId)
         {
+            // if there isn't a currently logged in user, prompt user to log in
+            // select current room
+            // select current game Id
+            // if there is a current user
+            // insert game id into "savedGameId" field on User table
+            // update user column in current row on game table with id of current user
+
             var sql = @"
                 Update Game 
                 set CurrentRoomId = @currentRoomId
                 where Game.GameId = @currentGameId
+
+                Update [User]
+                set SavedGameId = @currentGameId
                 ";
 
             var parameters = new

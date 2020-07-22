@@ -27,7 +27,9 @@ namespace Insert_Knife
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddTransient<GameRepository>();
+            
             services.AddSingleton<IConfiguration>(Configuration);
         }
 

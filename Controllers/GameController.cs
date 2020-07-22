@@ -32,5 +32,21 @@ namespace Insert_Knife.Controllers
 
             return Ok(games);
         }
+
+        [HttpPost("newgame")]
+        public IActionResult StartNewGame(int gameId, int answerWeaponId, int answerSuspectId, int answerRoomId)
+        {
+            var newGame = _gameRepository.StartNewGame(5, 2, 3, 4);
+
+            return Created("", newGame);
+        }
+
+        [HttpPut("savegame")]
+        public IActionResult SaveGame(int currentGameId, int currentRoomId)
+        {
+            var saveGame = _gameRepository.SaveGame(currentGameId, currentRoomId);
+
+            return Ok(saveGame);
+        }
     }
 }

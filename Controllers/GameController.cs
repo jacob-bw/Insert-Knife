@@ -20,6 +20,7 @@ namespace Insert_Knife.Controllers
             _gameRepository = gameRepository;
         }
 
+        // [url]/api/games/allgames/
         [HttpGet("allgames")]
         public IActionResult ViewAllGames()
         {
@@ -33,6 +34,7 @@ namespace Insert_Knife.Controllers
             return Ok(games);
         }
 
+        // [url]/api/games/newgame
         [HttpPost("newgame")]
         public IActionResult StartNewGame(int gameId, int answerWeaponId, int answerSuspectId, int answerRoomId)
         {
@@ -41,6 +43,8 @@ namespace Insert_Knife.Controllers
             return Created("", newGame);
         }
 
+
+        // [url]/api/games/savegame
         [HttpPut("savegame")]
         public IActionResult SaveGame(int currentGameId, int currentRoomId)
         {

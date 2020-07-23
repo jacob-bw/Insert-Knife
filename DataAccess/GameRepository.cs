@@ -62,9 +62,8 @@ namespace Insert_Knife.DataAccess
 
         public List<Game> ViewAllGames()
         {
-            var sql = @"
-                    select * from Game
-                    ";
+            var sql = @"select * from Game";
+
             using (var db = new SqlConnection(ConnectionString))
             {
                 var result = db.Query<Game>(sql).ToList();

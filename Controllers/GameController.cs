@@ -36,11 +36,11 @@ namespace Insert_Knife.Controllers
 
         // api/games/newgame
         [HttpPost("newgame")]
-        public IActionResult StartNewGame(int answerWeaponId, int answerSuspectId, int answerRoomId)
+        public IActionResult StartNewGame()
         {
-            var newGame = _gameRepository.StartNewGame(answerWeaponId, answerSuspectId, answerRoomId);
+            var newGame = _gameRepository.StartNewGame();
 
-            return Created("", newGame);
+            return Ok(newGame);
         }
 
 
@@ -58,11 +58,6 @@ namespace Insert_Knife.Controllers
         public IActionResult ViewCurrentGame(int userId, int gameId)
         {
             var currentGame = _gameRepository.ViewCurrentGame(userId, gameId);
-
-            if (!currentGame.Any())
-            {
-                return NotFound("doesn't look like you've got any saved games, fart detective.");
-            }
 
             return Ok(currentGame);
         }

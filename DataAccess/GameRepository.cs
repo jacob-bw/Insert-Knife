@@ -19,47 +19,53 @@ namespace Insert_Knife.DataAccess
             ConnectionString = config.GetConnectionString("InsertKnife");
         }
 
-        public Game StartNewGame(
-            int answerWeaponId,
-            int answerSuspectId,
-            int answerRoomId)
+        public Game StartNewGame()
         {
             // game is started by selecting the solution and inserting into the answer values on the current Row on the Game table
-            var sql = @"
+            var sqlSuspect = @"
                         select top(1) Suspects.SuspectId
                         from Suspects
                         order by NEWID()
+                        ";
 
+            var sqlWeapon = @"
                         select top(1) Weapons.WeaponId 
                         from Weapons
                         order by NEWID()
+                        ";
 
+            var sqlRoom = @"
                         select top(1) Rooms.RoomId
                         from Rooms
                         order by NEWID()
-
-                        insert into Game (AnswerSuspectId, AnswerRoomId, AnswerWeaponId)
-                        values (@answerSuspectId, @answerRoomId, @answerWeaponId)
                         ";
 
-            var parameters = new
-            {
-                AnswerWeaponId = answerWeaponId,
-                AnswerSuspectId = answerSuspectId,
-                AnswerRoomId = answerRoomId
-            };
+            var sqlInsert = @"
+                            insert into Game (AnswerSuspectId, AnswerRoomId, AnswerWeaponId)
+                            values (@AnswerSuspectId, @AnswerRoomId, @AnswerWeaponId)
+                            ";
+            
 
             using (var db = new SqlConnection(ConnectionString))
             {
-                var result = db.QueryFirstOrDefault<Game>(sql, parameters);
-                return result;
-            }
+                var newWeapon = db.Query<int>(sqlWeapon);
+                var newSuspect = db.Query<int>(sqlSuspect);
+                var newRoom = db.Query<int>(sqlRoom);
 
-            
+                var parameters = new
+                {
+                    AnswerWeaponId = newWeapon,
+                    AnswerSuspectId = newSuspect,
+                    AnswerRoomId = newRoom
+                };
+
+                    var result = db.QueryFirstOrDefault<Game>(sqlInsert, parameters);
+                    return result;
+            }
         }
 
         public List<Game> ViewAllGames()
-        {
+        {   
             var sql = @"select * from Game";
 
             using (var db = new SqlConnection(ConnectionString))

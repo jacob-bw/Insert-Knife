@@ -11,5 +11,9 @@ namespace Insert_Knife.Controllers
     [ApiController]
     public class GuessController : ControllerBase
     {
+        // view old guesses function
+        // select from guess table 
+        // join on game table where current userId matches userId for saved games
+        // return all guesses for games that match the current userId
     }
 }

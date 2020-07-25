@@ -20,7 +20,6 @@ namespace Insert_Knife.DataAccess
         }
 
         public Game StartNewGame(
-            int gameId,
             int answerWeaponId,
             int answerSuspectId,
             int answerRoomId)
@@ -45,7 +44,6 @@ namespace Insert_Knife.DataAccess
 
             var parameters = new
             {
-                GameId = gameId,
                 AnswerWeaponId = answerWeaponId,
                 AnswerSuspectId = answerSuspectId,
                 AnswerRoomId = answerRoomId
@@ -71,7 +69,7 @@ namespace Insert_Knife.DataAccess
             }
         }
 
-        public User SaveGame(int currentRoomId, int currentGameId)
+        public User SaveGame(int currentGameId, int currentRoomId)
         {
             // if there isn't a currently logged in user, prompt user to log in
             // select current room
@@ -91,8 +89,8 @@ namespace Insert_Knife.DataAccess
 
             var parameters = new
             {
+                currentGameId,
                 currentRoomId,
-                currentGameId
             };
 
             using (var db = new SqlConnection(ConnectionString))

@@ -21,7 +21,7 @@ namespace Insert_Knife.Controllers
         }
         
         // [url]/api/user/{userId}/guesses
-        [HttpGet("/{userId}/guesses")]
+        [HttpGet("{userId}/guesses")]
         public IActionResult ViewGuesses(int userId)
         {
             var oldGuesses = _userRepository.ViewGuesses(userId);

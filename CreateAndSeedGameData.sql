@@ -74,6 +74,13 @@ VALUES
 ('Yvette'),
 ('Wadsworth')
 
+Insert into [User](UserName) values ('lolTimCurry69')
+Insert into [User](UserName) values ('ToneToneTonePratt')
+Insert into [User](UserName) values ('WaddingtonsUK')
+Insert into [User](UserName) values ('DebraHill1950')
+Insert into [User](UserName) values ('testname')
+
+
 select * from Rooms
 select * from Weapons
 select * from Suspects

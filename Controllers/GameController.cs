@@ -36,9 +36,9 @@ namespace Insert_Knife.Controllers
 
         // [url]/api/games/newgame
         [HttpPost("newgame")]
-        public IActionResult StartNewGame(int gameId, int answerWeaponId, int answerSuspectId, int answerRoomId)
+        public IActionResult StartNewGame(int answerWeaponId, int answerSuspectId, int answerRoomId)
         {
-            var newGame = _gameRepository.StartNewGame(5, 2, 3, 4);
+            var newGame = _gameRepository.StartNewGame(answerWeaponId, answerSuspectId, answerRoomId);
 
             return Created("", newGame);
         }

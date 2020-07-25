@@ -19,15 +19,20 @@ namespace Insert_Knife.DataAccess
             ConnectionString = config.GetConnectionString("InsertKnife");
         }
 
-        public Guess ViewGuesses(int userId)
+        public List<Guess> ViewGuesses(int userId)
         {
-            var sql = @"";
+            var sql = @"
+                        select * from Guess
+                        join Game on Game.GameId = Guess.GameId
+                        where Game.UserId = @userId
+                        order by GuessId
+                        ";
 
             var parameters = new {UserId = userId};
 
             using (var db = new SqlConnection(ConnectionString))
             {
-                var guesses = db.Query(sql, parameters).ToList();
+                var guesses = db.Query<Guess>(sql, parameters).ToList();
                 return guesses;
             }
         }

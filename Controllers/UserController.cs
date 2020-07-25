@@ -20,12 +20,17 @@ namespace Insert_Knife.Controllers
             _userRepository = userRepository;
         }
         
-        // [url]/api/user/{userId}/guesses
+        // api/user/{userId}/guesses
         [HttpGet("{userId}/guesses")]
         public IActionResult ViewGuesses(int userId)
         {
             var oldGuesses = _userRepository.ViewGuesses(userId);
             return Ok(oldGuesses);
         }
+
+        // api/user/savegame
+        
+
+
     }
 }

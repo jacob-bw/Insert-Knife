@@ -20,7 +20,7 @@ namespace Insert_Knife.Controllers
             _gameRepository = gameRepository;
         }
 
-        // [url]/api/games/allgames/
+        // api/games/allgames/
         [HttpGet("allgames")]
         public IActionResult ViewAllGames()
         {
@@ -34,7 +34,7 @@ namespace Insert_Knife.Controllers
             return Ok(games);
         }
 
-        // [url]/api/games/newgame
+        // api/games/newgame
         [HttpPost("newgame")]
         public IActionResult StartNewGame(int answerWeaponId, int answerSuspectId, int answerRoomId)
         {
@@ -44,13 +44,27 @@ namespace Insert_Knife.Controllers
         }
 
 
-        // [url]/api/games/savegame
+        // api/games/savegame
         [HttpPut("savegame")]
         public IActionResult SaveGame(int currentGameId, int currentRoomId)
         {
             var saveGame = _gameRepository.SaveGame(currentGameId, currentRoomId);
 
             return Ok(saveGame);
+        }
+
+        // api/games/currentgame
+        [HttpGet("currentgame")]
+        public IActionResult ViewCurrentGame(int userId, int gameId)
+        {
+            var currentGame = _gameRepository.ViewCurrentGame(userId, gameId);
+
+            if (!currentGame.Any())
+            {
+                return NotFound("doesn't look like you've got any saved games, fart detective.");
+            }
+
+            return Ok(currentGame);
         }
     }
 }

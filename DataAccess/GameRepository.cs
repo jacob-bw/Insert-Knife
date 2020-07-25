@@ -99,6 +99,26 @@ namespace Insert_Knife.DataAccess
                 return result;
             }
         }
+
+        public Game ViewCurrentGame(int userId, int gameId)
+        {
+
+            var sql = @"
+                        select top(1) from Game
+                        ";
+
+            var parameters = new
+            {
+                userId,
+                gameId,
+            };
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var result = db.QueryFirstOrDefault<Game>(sql, parameters);
+                return result;
+            }
+        }
     }
 
 }

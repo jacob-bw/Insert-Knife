@@ -28,6 +28,11 @@ namespace Insert_Knife
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+                options.AddPolicy("ItsAllGood",
+                    builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin())
+            );
+
             services.AddTransient<GameRepository>();
             services.AddTransient<UserRepository>();
             services.AddTransient<GuessRepository>();
@@ -46,6 +51,8 @@ namespace Insert_Knife
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("ItsAllGood");
 
             app.UseRouting();
 

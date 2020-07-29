@@ -1,6 +1,8 @@
 import React from 'react';
 import RoomCard from '../RoomCard/RoomCard';
 
+import './Board.scss';
+
 import { getAllRooms } from '../../Helpers/Data/RoomData';
 
 class Gameboard extends React.Component{
@@ -22,7 +24,7 @@ class Gameboard extends React.Component{
     return (
       <div>
         <h1>This is the game board</h1>
-        <div>{BuildGameBoard}</div>
+        <div className="container">{BuildGameBoard}</div>
       </div>
     )
   }

@@ -7,6 +7,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  .card {
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 25px;
+  }
 }
 
 code {

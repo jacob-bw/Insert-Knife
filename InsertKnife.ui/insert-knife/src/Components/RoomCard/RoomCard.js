@@ -10,7 +10,7 @@ class RoomCard extends React.Component {
     const { room } = this.props;
     console.log(room)
     return (
-      <div className="card text-center" id={room.roomId}>
+      <div className="card text-center col-md-4" id={room.roomId}>
         <div className="card-header">
           <ul className="nav nav-pills card-header-pills">
             <li className="nav-item">

@@ -9,8 +9,8 @@ function App() {
     // "if !currentGame.Any display start game button"
     <div className="App">
       <div id="NewGame">Want to start a new game? Go ahead and ... 
-        <button className="btn btn-danger startNewGame">INSERT KNIFE</button>
-        </div>
+      <button className="btn btn-danger startNewGame">INSERT KNIFE</button>
+      </div>
       <Board />
     </div>
   );

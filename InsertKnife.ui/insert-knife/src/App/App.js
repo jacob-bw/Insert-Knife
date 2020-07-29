@@ -6,8 +6,11 @@ import './App.scss';
 
 function App() {
   return (
+    // "if !currentGame.Any display start game button"
     <div className="App">
-      <button className="btn btn-danger">INSERT KNIFE</button>
+      <div id="NewGame">Want to start a new game? Go ahead and ... 
+        <button className="btn btn-danger startNewGame">INSERT KNIFE</button>
+        </div>
       <Board />
     </div>
   );

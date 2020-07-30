@@ -16,6 +16,19 @@ class Gameboard extends React.Component{
     .then(getAllRooms => this.setState({getAllRooms: getAllRooms}))
   }
 
+  
+  selectRoom = () => {
+    // mouseclick on roomcard
+    // pulls id for selected roomcard
+    // updates current game line on game table w/ new roomId
+    // re-renders ui to print user icon and open door on roomcard
+    // removes user icon and closes door from previous roomcard 
+  }
+
+  userPresent = () => {
+
+  }
+
   render() {
     const { getAllRooms } = this.state;
 

@@ -8,9 +8,9 @@ const getAllRooms = () => new Promise((resolve, reject) => {
   }).catch((errorFromGetAllRooms) => reject(errorFromGetAllRooms));
 })
 
-const moveToNewRoom = () => {
-
-}
+const moveToNewRoom = () => new Promise ((resolve, reject) => {
+  axios.put(`${baseUrl}/api/rooms/newroom/{roomId}`)
+})
 
 
 export { getAllRooms };

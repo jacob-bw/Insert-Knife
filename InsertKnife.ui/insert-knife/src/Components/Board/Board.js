@@ -10,6 +10,24 @@ class Gameboard extends React.Component{
     getAllRooms: []
   }
 
+  // updateTattoo = (tattooId, noRegerts) => {
+  //   savedData.updateTattoo(tattooId, noRegerts)
+  //     .then(() => {
+  //       this.getTattoos();
+  //       console.log('successfully updated tattoo');
+  //     })
+  //     .catch((error) => console.error('error from update tattoo', error));
+  // }
+
+  selectNewRoom = (newRoomId) => {
+    // mouseclick on roomcard
+    // pulls id for selected roomcard
+    // updates current game line on game table w/ new roomId
+    // re-renders ui to print user icon and open door on roomcard
+    // removes user icon and closes door from previous roomcard 
+    
+  }
+
   componentDidMount() {
     const { room } = this.props;
     getAllRooms(room)
@@ -17,17 +35,7 @@ class Gameboard extends React.Component{
   }
 
   
-  selectRoom = () => {
-    // mouseclick on roomcard
-    // pulls id for selected roomcard
-    // updates current game line on game table w/ new roomId
-    // re-renders ui to print user icon and open door on roomcard
-    // removes user icon and closes door from previous roomcard 
-  }
 
-  userPresent = () => {
-
-  }
 
   render() {
     const { getAllRooms } = this.state;

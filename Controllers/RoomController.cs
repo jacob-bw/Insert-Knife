@@ -36,7 +36,7 @@ namespace Insert_Knife.Controllers
         [HttpPut("newroom/{roomId}")]
         public IActionResult MoveToNewRoom(int userId, int roomId)
         {
-            var currentGameId = _gameRepository.ViewCurrentGame(userId).GameId;
+            var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
             var newRoom = _roomRepository.MoveToNewRoom(roomId, currentGameId);
 
             return Ok(newRoom);

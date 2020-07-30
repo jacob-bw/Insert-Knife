@@ -106,20 +106,20 @@ namespace Insert_Knife.DataAccess
             }
         }
 
-        public Game ViewCurrentGame(int userId, int gameId)
+        public Game ViewCurrentGame(int userId)
             // where userId matches current user
             // order by date ascending
         {
 
             var sql = @"
-                        select top(1) from Game
-                        
+                        select * from Game
+                        where UserId = @userId
+                        Order by GameId desc
                         ";
 
             var parameters = new
             {
-                userId,
-                gameId,
+                UserId = userId
             };
 
             using (var db = new SqlConnection(ConnectionString))

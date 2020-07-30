@@ -53,11 +53,11 @@ namespace Insert_Knife.Controllers
             return Ok(saveGame);
         }
 
-        // api/games/currentgame
-        [HttpGet("currentgame")]
-        public IActionResult ViewCurrentGame(int userId, int gameId)
+        // api/games/{userId}/currentgame
+        [HttpGet("{userId}/currentgame")]
+        public IActionResult ViewCurrentGame(int userId)
         {
-            var currentGame = _gameRepository.ViewCurrentGame(userId, gameId);
+            var currentGame = _gameRepository.ViewCurrentGame(userId);
 
             return Ok(currentGame);
         }

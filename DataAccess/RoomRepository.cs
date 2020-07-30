@@ -30,5 +30,27 @@ namespace Insert_Knife.DataAccess
                 return result;
             }
         }
+
+        public Game MoveToNewRoom(int newRoomId, int gameId)
+        {
+            // compare gameId using currentgame value from ViewCurrentGame (line 109 in Game Repository)
+            var sql = @"
+                        Update Game 
+                        set CurrentRoomId = @currentRoomId
+                        where Game.GameId = @currentGameId
+                        ";
+            var parameters = new
+            {
+                CurrentRoomId = newRoomId,
+                CurrentGameId = gameId
+
+            };
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var result = db.QueryFirstOrDefault<Game>(sql, parameters);
+                return result;
+            }
+        }
     }
 }

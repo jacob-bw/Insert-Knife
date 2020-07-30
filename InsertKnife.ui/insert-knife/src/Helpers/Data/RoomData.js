@@ -8,4 +8,9 @@ const getAllRooms = () => new Promise((resolve, reject) => {
   }).catch((errorFromGetAllRooms) => reject(errorFromGetAllRooms));
 })
 
+const moveToNewRoom = () => {
+
+}
+
+
 export { getAllRooms };

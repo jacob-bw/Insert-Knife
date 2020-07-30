@@ -19,12 +19,14 @@ class Gameboard extends React.Component{
   render() {
     const { getAllRooms } = this.state;
 
-    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} />)
+    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} occupied={room.occupied}/>)
     
     return (
       <div>
         <h1>This is the game board</h1>
-        <div className="container">{BuildGameBoard}</div>
+        <div className="container">
+          <div className="row">{BuildGameBoard}</div>
+        </div>
       </div>
     )
   }

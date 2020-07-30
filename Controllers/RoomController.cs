@@ -13,11 +13,14 @@ namespace Insert_Knife.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private RoomRepository _roomRepository;
 
-        public RoomController(RoomRepository roomRepository)
+        private RoomRepository _roomRepository;
+        private GameRepository _gameRepository;
+
+        public RoomController(RoomRepository roomRepository, GameRepository gameRepository)
         {
             _roomRepository = roomRepository;
+            _gameRepository = gameRepository;
         }
 
         // api/rooms/allrooms
@@ -27,6 +30,16 @@ namespace Insert_Knife.Controllers
             var rooms = _roomRepository.ViewAllRooms();
 
             return Ok(rooms);
+        }
+
+        // api/rooms/newroom/{roomId}
+        [HttpPut("newroom/{roomId}")]
+        public IActionResult MoveToNewRoom(int userId, int roomId)
+        {
+            var currentGameId = _gameRepository.ViewCurrentGame(userId).GameId;
+            var newRoom = _roomRepository.MoveToNewRoom(roomId, currentGameId);
+
+            return Ok(newRoom);
         }
     }
 }

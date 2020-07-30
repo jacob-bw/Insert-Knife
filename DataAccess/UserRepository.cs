@@ -36,5 +36,20 @@ namespace Insert_Knife.DataAccess
                 return guesses;
             }
         }
+
+        public User CurrentUser()
+        {
+            var sql = @"
+                        select top(1) * from [Game]
+                        where UserId is not null
+                        order by GameId desc
+                        ";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var currentUser = db.QueryFirstOrDefault(sql);
+                return currentUser;
+            }
+        }
     }
 }

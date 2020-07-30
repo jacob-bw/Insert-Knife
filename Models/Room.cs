@@ -9,5 +9,6 @@ namespace Insert_Knife.Models
     {
         public int RoomId { get; set; }
         public string RoomName { get; set; }
+        public bool Occupied { get; set; }
     }
 }

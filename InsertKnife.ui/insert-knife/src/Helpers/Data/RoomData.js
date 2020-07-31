@@ -11,4 +11,4 @@ const getAllRooms = () => new Promise((resolve, reject) => {
 
 const moveToNewRoom = (roomId) => axios.put(`${baseUrl}/api/rooms/newroom/${roomId}`);
 
-export { getAllRooms, moveToNewRoom };
+export default { getAllRooms, moveToNewRoom };

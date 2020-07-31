@@ -1,7 +1,7 @@
 import React from 'react';
 import RoomCard from '../RoomCard/RoomCard';
-import { getAllRooms, moveToNewRoom } from '../../Helpers/Data/RoomData';
-import { getCurrentGame } from '../../Helpers/Data/GameData';
+import roomData from '../../Helpers/Data/RoomData';
+import gameData from '../../Helpers/Data/GameData';
 
 import './Board.scss';
 
@@ -9,29 +9,35 @@ import './Board.scss';
 class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
+    currentRoom: ''
   }
 
 
-  selectNewRoom = (getCurrentGame, newRoomId) => {
-    
-    moveToNewRoom(newRoomId)
-      .then()
-      .catch((error) => console.error('encountered the following error when attempting to update room', error));
+  // MoveToNewRoom function
+  // if click on a new room, simply insert new roomId into game table on current game line
+  // if click "move forward" simply iterate the user into the next room 
+
+  moveToNewRoom = (newRoomId) => {
+    const currentRoom = gameData.getCurrentRoom;
   }
+
+  // getCardId = (e) => {
+  //   const newCardId = e.target.id;
+  //   console.log(newCardId);
+  // }
 
   componentDidMount() {
     const { room } = this.props;
-    getAllRooms(room)
+    roomData.getAllRooms(room)
     .then(getAllRooms => this.setState({getAllRooms: getAllRooms}))
   }
-
-  
+ 
 
 
   render() {
     const { getAllRooms } = this.state;
 
-    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room}/>)
+    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} />)
     
     return (
       <div>

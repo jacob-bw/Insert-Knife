@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseUrl } from '../apiKeys.json';
-import { userId } from './UserData';
+import { getCurrentUserId } from './UserData';
 
 const getAllGames = () => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/api/games/allgames`).then((result) => {
@@ -10,13 +10,19 @@ const getAllGames = () => new Promise((resolve, reject) => {
 })
 
 const getCurrentGame = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/api/${userId}/currentgame`).then((result) => {
+  axios.get(`${baseUrl}/api/games/${getCurrentUserId}/currentgame`).then((result) => {
     const currentGame = result.data;
     resolve(currentGame);
   }).catch((errorFromGetCurrentGame) => reject(errorFromGetCurrentGame));
 })
 
+const getCurrentRoom = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/api/games/${getCurrentUserId}/currentgame`).then((result) => {
+    const currentRoom = result.data.CurrentRoomId;
+    resolve(currentRoom);
+  }).catch((errorFromGetCurrentGame) => reject(errorFromGetCurrentGame));
+})
 
 
 
-export { getAllGames, getCurrentGame };
+export { getAllGames, getCurrentGame , getCurrentRoom};

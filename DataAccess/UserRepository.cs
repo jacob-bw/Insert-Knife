@@ -37,7 +37,7 @@ namespace Insert_Knife.DataAccess
             }
         }
 
-        public User CurrentUser()
+        public Game CurrentUser()
         {
             var sql = @"
                         select top(1) * from [Game]

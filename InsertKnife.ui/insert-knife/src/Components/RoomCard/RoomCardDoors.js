@@ -7,13 +7,12 @@ class RoomCardDoors extends React.Component {
 
 
   render(){
-    const { room } = this.props;
-    console.log(room)
+
     return (
         <div>
-        { !this.props.occupied
-          ? <a className="nav-link disabled" href="#"><i class="fas fa-door-closed"></i></a>
-          : <a className="nav-link disabled" href="#"><i class="fas fa-door-open"></i></a>
+        { !this.props
+          ? <a className="nav-link disabled" href="#"><i className="fas fa-door-closed"></i></a>
+          : <a className="nav-link disabled" href="#"><i className="fas fa-door-open"></i></a>
         }
         </div>
     )

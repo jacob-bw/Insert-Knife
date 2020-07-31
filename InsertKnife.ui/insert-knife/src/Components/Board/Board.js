@@ -1,31 +1,22 @@
 import React from 'react';
 import RoomCard from '../RoomCard/RoomCard';
+import { getAllRooms, moveToNewRoom } from '../../Helpers/Data/RoomData';
+import { getCurrentGame } from '../../Helpers/Data/GameData';
 
 import './Board.scss';
 
-import { getAllRooms } from '../../Helpers/Data/RoomData';
 
 class Gameboard extends React.Component{
   state = {
-    getAllRooms: []
+    getAllRooms: [],
   }
 
-  // updateTattoo = (tattooId, noRegerts) => {
-  //   savedData.updateTattoo(tattooId, noRegerts)
-  //     .then(() => {
-  //       this.getTattoos();
-  //       console.log('successfully updated tattoo');
-  //     })
-  //     .catch((error) => console.error('error from update tattoo', error));
-  // }
 
-  selectNewRoom = (newRoomId) => {
-    // mouseclick on roomcard
-    // pulls id for selected roomcard
-    // updates current game line on game table w/ new roomId
-    // re-renders ui to print user icon and open door on roomcard
-    // removes user icon and closes door from previous roomcard 
+  selectNewRoom = (getCurrentGame, newRoomId) => {
     
+    moveToNewRoom(newRoomId)
+      .then()
+      .catch((error) => console.error('encountered the following error when attempting to update room', error));
   }
 
   componentDidMount() {
@@ -40,12 +31,11 @@ class Gameboard extends React.Component{
   render() {
     const { getAllRooms } = this.state;
 
-    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} occupied={room.occupied}/>)
+    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room}/>)
     
     return (
       <div>
-        <h1>This is the game board</h1>
-        <div className="container">
+        <div className="gameBoard container">
           <div className="row">{BuildGameBoard}</div>
         </div>
       </div>

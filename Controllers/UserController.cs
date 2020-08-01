@@ -28,7 +28,13 @@ namespace Insert_Knife.Controllers
             return Ok(oldGuesses);
         }
 
-        // api/user/savegame
+        // api/user/currentuser
+        [HttpGet("currentuser")]
+        public IActionResult CurrentUser()
+        {
+            var currentUserId = _userRepository.CurrentUser().UserId;
+            return Ok(currentUserId);
+        }
         
 
 

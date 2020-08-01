@@ -21,7 +21,8 @@ namespace Insert_Knife.DataAccess
         public List<Guess> ViewGuesses(int userId)
         {
             var sql = @"
-                        
+                        select * from Guess
+                        where UserId = @currentUserId
                         ";
 
             var parameters = new { UserId = userId };

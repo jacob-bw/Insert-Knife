@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseUrl } from '../apiKeys.json';
+import { getCurrentRoom } from './GameData';
 
 const getAllRooms = () => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/api/rooms/allrooms`).then((result) => {
@@ -8,4 +9,6 @@ const getAllRooms = () => new Promise((resolve, reject) => {
   }).catch((errorFromGetAllRooms) => reject(errorFromGetAllRooms));
 })
 
-export { getAllRooms };
+const moveRooms = (roomId) => axios.put(`${baseUrl}/api/rooms/newroom/${roomId}`);
+
+export { getAllRooms, moveRooms };

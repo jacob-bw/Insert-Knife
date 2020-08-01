@@ -34,9 +34,10 @@ class ControlBar extends React.Component {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <Button color="secondary" size="" id="moveBackwards" onClick={this.moveArrows}>Move Backward</Button>
-        <Button outline color="danger" size="" id="makeGuess">Solve the Mystery</Button>
-        <Button color="secondary" size=""id="moveForwards" onClick={this.moveArrows}>Move Forward</Button>
+        {/* <Button color="secondary" size="" id="moveBackwards" onClick={this.moveArrows}>Move Backward</Button>
+        <Button color="secondary" size=""id="moveForwards" onClick={this.moveArrows}>Move Forward</Button> */}
+        <Button color="success" size="" id="makeGuess">Figure it Out</Button>
+        <Button color="primary">Save Game</Button>
       </Navbar>
     </div>
   );

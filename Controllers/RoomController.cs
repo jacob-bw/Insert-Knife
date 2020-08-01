@@ -37,8 +37,7 @@ namespace Insert_Knife.Controllers
         public IActionResult MoveToNewRoom(int roomId)
         {
             // currently hardcoded w/ couchnap userId for retrieving "active" games
-            // also needs to update column on rooms table and set `occupied` to `yes`
-            var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
+             var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
             var currentRoomId = _gameRepository.ViewCurrentGame(1002).CurrentRoomId;
             _roomRepository.ClearOccupied(currentRoomId);
             _roomRepository.SetOccupied(roomId);

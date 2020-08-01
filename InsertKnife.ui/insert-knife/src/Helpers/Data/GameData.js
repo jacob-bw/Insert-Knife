@@ -34,4 +34,4 @@ const getCurrentRoom = () => new Promise((resolve, reject) => {
 
 
 
-export default { getAllGames, getCurrentGame , getCurrentRoom};
+export { getAllGames, getCurrentGame , getCurrentRoom};

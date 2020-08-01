@@ -1,7 +1,6 @@
 import React from 'react';
 import RoomCard from '../RoomCard/RoomCard';
-import roomData from '../../Helpers/Data/RoomData';
-import gameData from '../../Helpers/Data/GameData';
+import {getAllRooms} from '../../Helpers/Data/RoomData';
 
 import './Board.scss';
 
@@ -9,35 +8,28 @@ import './Board.scss';
 class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
-    currentRoom: ''
   }
 
-
-  // MoveToNewRoom function
-  // if click on a new room, simply insert new roomId into game table on current game line
-  // if click "move forward" simply iterate the user into the next room 
-
-  moveToNewRoom = (newRoomId) => {
-    const currentRoom = gameData.getCurrentRoom;
+  getCardId = (e) => {
+    const newCardId = e.target.id;
+    console.log(newCardId);
   }
 
-  // getCardId = (e) => {
-  //   const newCardId = e.target.id;
-  //   console.log(newCardId);
-  // }
+  buildRooms = () => {
+    getAllRooms()
+    .then(getAllRooms => this.setState({getAllRooms: getAllRooms}))
+  }
+
 
   componentDidMount() {
     const { room } = this.props;
-    roomData.getAllRooms(room)
-    .then(getAllRooms => this.setState({getAllRooms: getAllRooms}))
+    this.buildRooms();
   }
- 
-
 
   render() {
     const { getAllRooms } = this.state;
 
-    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} />)
+    const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} buildRooms={this.buildRooms}/>)
     
     return (
       <div>

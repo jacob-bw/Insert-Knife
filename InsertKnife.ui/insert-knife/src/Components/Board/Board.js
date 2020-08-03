@@ -30,6 +30,8 @@ class Gameboard extends React.Component{
     this.buildRooms();
   }
 
+  // get help w/ layout
+  
   // build first half of gameboard w/ rooms 1-4, 
   // then build guess component,
   // then build 2nd half of gameboard w/ rooms 5-8

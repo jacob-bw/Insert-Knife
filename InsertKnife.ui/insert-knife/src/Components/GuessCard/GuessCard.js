@@ -15,7 +15,7 @@ class GuessCard extends React.Component {
   props = this.state;
 
   saveGame = () =>{
-    console.log("placeholder for save event");
+    console.log("placeholder for saveGame event");
   }
 
   weaponPicker = (e) => {
@@ -26,10 +26,11 @@ class GuessCard extends React.Component {
   suspectPicker = (e) => {
     var allegedMurderer = e.target.id;
     console.log(allegedMurderer);
+    return(allegedMurderer);
   }
 
   render () {
-    
+
     return(
       <Card>
         <CardBody>

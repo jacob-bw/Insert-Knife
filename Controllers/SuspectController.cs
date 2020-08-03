@@ -20,7 +20,7 @@ namespace Insert_Knife.Controllers
             _suspectRepository = suspectRepository;
         }
         // api/suspects/allsuspects
-        [HttpGet("allsuspects")]
+        [HttpGet("viewall")]
         public IActionResult ViewAllSuspects()
         {
             var suspects = _suspectRepository.AllSuspects();

@@ -21,7 +21,7 @@ namespace Insert_Knife.Controllers
         }
 
         // api/weapons/allweapons
-        [HttpGet("allweapons")]
+        [HttpGet("viewall")]
         public IActionResult ViewAllWeapons()
         {
             var weapons = _weaponRepository.AllWeapons();

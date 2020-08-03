@@ -10,14 +10,14 @@ const getOldGuesses = () => new Promise ((resolve, reject) => {
 })
 
 const getAllWeapons = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/api/Weapons/allWeapons`).then((result) => {
+  axios.get(`${baseUrl}/api/weapons/viewall`).then((result) => {
     const allWeapons = result.data;
     resolve(allWeapons);
   }).catch((errorFromGetAllWeapons) => reject(errorFromGetAllWeapons));
 })
 
 const getAllSuspects = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/api/Suspects/allSuspects`).then((result) => {
+  axios.get(`${baseUrl}/api/suspects/viewall`).then((result) => {
     const allSuspects = result.data;
     resolve(allSuspects);
   }).catch((errorFromGetAllSuspects) => reject(errorFromGetAllSuspects));

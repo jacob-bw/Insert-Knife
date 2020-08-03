@@ -17,6 +17,7 @@ const getCurrentGame = () => new Promise((resolve, reject) => {
 })
 
 // the way I _think_ it's supposed to work
+
 // const getCurrentRoom = () => new Promise((resolve, reject) => {
 //   axios.get(`${baseUrl}/api/games/${getCurrentUserId}/currentgame`).then((result) => {
 //     const currentRoom = result.data.CurrentRoomId;

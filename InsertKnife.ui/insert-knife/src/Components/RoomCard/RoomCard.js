@@ -13,14 +13,15 @@ class RoomCard extends React.Component {
   
   moveToNewRoom = (e) => {
     const newCardId = e.target.id;
-    moveRooms(newCardId).then(this.props.buildRooms);
+    moveRooms(newCardId)
+    .then(this.props.buildRooms);
   }
   
   
   render(){
     const { room } = this.props;
     return (
-      <div className="card text-center col-md-3" id={room.roomId} onClick={this.moveToNewRoom} >
+      <div className="card text-center col-lg-3" id={room.roomId} onClick={this.moveToNewRoom} >
         { !this.props.room.occupied
           ? <a className="nav-link disabled" href="#"><i className="fas fa-door-closed"></i></a>
           : <a className="nav-link disabled" href="#"><i className="fas fa-door-open"></i></a>

@@ -10,13 +10,13 @@ import './Board.scss';
 class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
-    answer: [],
+    currentGame: [],
   }
 
-  getAnswer = () =>{
-    getCurrentGame();
-    console.log(getCurrentGame)
-  }
+    getAnswer = () =>{
+      getCurrentGame();
+      console.log(getCurrentGame)
+    }
 
 
   getCardId = (e) => {

@@ -9,19 +9,38 @@ import {Button,
         UncontrolledDropdown, 
       } from 'reactstrap';
 import { makeNewGuess } from '../../Helpers/Data/GuessData';
+import { saveCurrentGame } from '../../Helpers/Data/GameData';
+
+import './guessCard.scss';
 
 class GuessCard extends React.Component {
 
   props = this.state;
 
+  
+  // // getWeapons = () => {
+  // //   getAllWeapons()
+  // //   .then(getAllWeapons => this.setState({getAllWeapons: getAllWeapons}))
+  // // }
+
+  // // getSuspects = () => {
+  // //   getAllSuspects()
+  // //   .then(getAllSuspects => this.setState(({getSuspects: getAllSuspects})))
+  // // }
+
+  // componentDidMount(){
+  //   this.getWeapons();
+  //   this.getSuspects();
+  // }
+
   saveGame = () =>{
-    console.log("placeholder for saveGame event");
+    saveCurrentGame();
   }
 
   weaponPicker = (e) => {
     var murderWeapon = e.target.id;
-    console.log(murderWeapon);
-  }
+    this.setState({answer: { weapon: murderWeapon}})  
+}
 
   suspectPicker = (e) => {
     var allegedMurderer = e.target.id;
@@ -65,6 +84,7 @@ class GuessCard extends React.Component {
               <DropdownItem id="8" onClick={this.weaponPicker}>Scorpion</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+          {/* On successful guess, swap "figure it out" text for "start new game" */}
           <Button color="success" size="sm" id="makeGuess">Figure It Out</Button>
           <Button color="primary" size="sm" id="saveGame" onClick={this.saveGame}>Save Game</Button>
         </CardBody>

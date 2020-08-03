@@ -1,6 +1,8 @@
 import React from 'react';
 import RoomCard from '../RoomCard/RoomCard';
 import {getAllRooms} from '../../Helpers/Data/RoomData';
+import GuessCard from '../GuessCard/GuessCard';
+// import Guess from '../Controls/Guess';
 
 import './Board.scss';
 
@@ -8,6 +10,8 @@ import './Board.scss';
 class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
+    // getAllWeapons: [],
+    // getAllSuspects: []
   }
 
   getCardId = (e) => {
@@ -26,6 +30,10 @@ class Gameboard extends React.Component{
     this.buildRooms();
   }
 
+  // build first half of gameboard w/ rooms 1-4, 
+  // then build guess component,
+  // then build 2nd half of gameboard w/ rooms 5-8
+
   render() {
     const { getAllRooms } = this.state;
 
@@ -34,7 +42,12 @@ class Gameboard extends React.Component{
     return (
       <div>
         <div className="gameBoard container">
-          <div className="row">{BuildGameBoard}</div>
+          <div className="row">
+            {BuildGameBoard}
+            <GuessCard />
+          </div>
+
+          {/* <Guess /> */}
         </div>
       </div>
     )

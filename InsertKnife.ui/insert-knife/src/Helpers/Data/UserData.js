@@ -8,4 +8,7 @@ const getCurrentUserId = () => new Promise ((resolve, reject) => {
   }).catch((errorFromGetCurrentUserId) => reject (errorFromGetCurrentUserId));
 })
 
+
 export { getCurrentUserId };
+
+

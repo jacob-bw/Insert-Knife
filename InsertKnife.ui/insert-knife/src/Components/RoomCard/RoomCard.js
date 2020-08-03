@@ -8,7 +8,7 @@ class RoomCard extends React.Component {
   
   getCardId = (e) => {
     const newCardId = e.target.id;
-    console.log(e.target.id);
+    console.log(newCardId);
   }
   
   moveToNewRoom = (e) => {

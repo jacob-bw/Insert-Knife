@@ -1,4 +1,5 @@
 import React from 'react';
+import Guess from '../Controls/Guess';
 import { Button, Navbar, } from 'reactstrap';
 import { getCurrentRoom } from '../../Helpers/Data/GameData';
 import { moveRooms } from '../../Helpers/Data/RoomData';
@@ -34,11 +35,12 @@ class ControlBar extends React.Component {
   render(){
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="dark" light expand="md">
         {/* <Button color="secondary" size="" id="moveBackwards" onClick={this.moveArrows}>Move Backward</Button>
         <Button color="secondary" size=""id="moveForwards" onClick={this.moveArrows}>Move Forward</Button> */}
         <Button color="success" size="" id="makeGuess">Figure it Out</Button>
         <Button color="primary">Save Game</Button>
+        <Guess />
       </Navbar>
     </div>
   );

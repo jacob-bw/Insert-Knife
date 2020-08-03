@@ -12,7 +12,7 @@ function App() {
       <button className="btn btn-danger startNewGame">INSERT KNIFE</button>
       </div> */}
       <Board />
-      <ControlBar />
+      {/* <ControlBar /> */}
     </div>
   );
 }

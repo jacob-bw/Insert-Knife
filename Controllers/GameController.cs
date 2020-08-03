@@ -13,12 +13,16 @@ namespace Insert_Knife.Controllers
     [ApiController]
     public class GameController : ControllerBase
     {
-        private GameRepository _gameRepository;
+        private GameRepository _gameRepository; 
+        private UserRepository _userRepository;
 
-        public GameController(GameRepository gameRepository)
+        public GameController (GameRepository gameRepository, UserRepository userRepository)
         {
+            _userRepository = userRepository;
             _gameRepository = gameRepository;
         }
+
+        
 
         // api/games/allgames/
         [HttpGet("allgames")]
@@ -49,7 +53,8 @@ namespace Insert_Knife.Controllers
         public IActionResult SaveGame(int currentGameId, int currentRoomId)
         {
             var saveGame = _gameRepository.SaveGame(currentGameId, currentRoomId);
-
+            _userRepository.UpdateCurrentRoom(currentGameId);
+            
             return Ok(saveGame);
         }
 

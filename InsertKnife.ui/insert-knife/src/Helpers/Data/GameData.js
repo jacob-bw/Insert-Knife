@@ -16,7 +16,13 @@ const getCurrentGame = () => new Promise((resolve, reject) => {
   }).catch((errorFromGetCurrentGame) => reject(errorFromGetCurrentGame));
 })
 
+const saveCurrentGame = (currentGameId, currentRoomId) => {
+  axios.put(`${baseUrl}/api/games/savegame`)
+
+}
+
 // the way I _think_ it's supposed to work
+
 // const getCurrentRoom = () => new Promise((resolve, reject) => {
 //   axios.get(`${baseUrl}/api/games/${getCurrentUserId}/currentgame`).then((result) => {
 //     const currentRoom = result.data.CurrentRoomId;
@@ -33,5 +39,4 @@ const getCurrentRoom = () => new Promise((resolve, reject) => {
 })
 
 
-
-export { getAllGames, getCurrentGame , getCurrentRoom};
+export { getAllGames, getCurrentGame , getCurrentRoom, saveCurrentGame};

@@ -51,5 +51,20 @@ namespace Insert_Knife.DataAccess
                 return currentUser;
             }
         }
+
+        public User UpdateCurrentRoom(int currentGameId)
+        {
+            var sql = @"
+                        Update [User]
+                        set SavedGameId = @currentGameId
+                        ";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var updatedGameId = db.QueryFirstOrDefault(sql);
+                return updatedGameId;
+            }
+        }
+
     }
 }

@@ -22,7 +22,7 @@ class GuessTable extends React.Component {
   //   if (targetId === false ){
   //     addclass = "wrongo"
   //   } else {
-  //     console.log("beepboop");
+  //     addclass = "yougotitdude";
   //   }
   // }
 
@@ -36,9 +36,9 @@ class GuessTable extends React.Component {
     console.log("this is a guess before entering the guess table", guess);
     return(
     <tr>
-      <td>{guess.weaponId}</td>
-      <td>{guess.suspectId}</td>
-      <td>{guess.roomId}</td>
+      <td id={guess.weaponId}>{guess.weaponName}</td>
+    <td id={guess.roomId}>{guess.roomName}</td>
+    <td id={guess.suspectId}>{guess.suspectName}</td>
     </tr>
     )
   }

@@ -1,27 +1,19 @@
 import React from 'react';
 import RoomCard from '../RoomCard/RoomCard';
-import { getAllRooms } from '../../Helpers/Data/RoomData';
-import { getAllSuspects, getAllWeapons} from '../../Helpers/Data/GuessData';
 import GuessCard from '../GuessCard/GuessCard';
-import { getCurrentGame } from '../../Helpers/Data/GameData';
+import GuessTable from '../GuessCard/GuessTable';
+
+import {Table} from 'reactstrap';
+import { getAllRooms } from '../../Helpers/Data/RoomData';
+import { getOldGuesses } from '../../Helpers/Data/GuessData';
+
 import './Board.scss';
 
 
 class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
-    currentGame: [],
-  }
-
-    getAnswer = () =>{
-      getCurrentGame();
-      console.log(getCurrentGame)
-    }
-
-
-  getCardId = (e) => {
-    var newCardId = e.target.id;
-    console.log(newCardId);
+    getOldGuesses: [],
   }
 
   buildRooms = () => {
@@ -29,43 +21,46 @@ class Gameboard extends React.Component{
     .then(getAllRooms => this.setState({getAllRooms: getAllRooms}))
   }
 
-  // buildWeapons = () => {
-  //   getAllWeapons()
-  //   .then(getAllWeapons => this.setState({getAllWeapons: getAllWeapons}))
-  // }
-
-  // buildSuspects = () => {
-  //   getAllSuspects()
-  //   .then(getAllSuspects => this.setState({getAllSuspects: getAllSuspects}))
-  // }
-
-
-  componentDidMount() {
-    const { room, weapon, suspect } = this.props;
-    this.buildRooms();
+  buildTable = () => {
+    console.log(getOldGuesses);
+    getOldGuesses()
+    .then(getOldGuesses => this.setState({ getOldGuesses: getOldGuesses }))
   }
 
-  // get help w/ layout
-
-  // build first half of gameboard w/ rooms 1-4, 
-  // then build guess component,
-  // then build 2nd half of gameboard w/ rooms 5-8
+  componentDidMount() {
+    this.buildRooms();
+    this.buildTable();
+  }
 
   render() {
-    const { getAllRooms, getAllSuspects, getAllWeapons } = this.state;
+    const { getAllRooms, getOldGuesses } = this.state;
 
-//    const stateAllSuspects = getAllSuspects.map((suspect) => <DropdownItem key={suspect.id} onClick={this.suspectPicker}>{suspect.SuspectName}</DropdownItem>)
+    console.log("this is get old guesses", getOldGuesses);
+
     const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} buildRooms={this.buildRooms}/>)
     
+    const buildGuessTable = getOldGuesses.map((guess) => <GuessTable key={guess.id} guess={guess}/>)
+
     return (
       <div>
         <div className="gameBoard container">
           <div className="row">
             {BuildGameBoard}
             <GuessCard />
+            <Table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Weapon</th>
+                  <th>Room</th>
+                  <th>Suspect</th>
+                </tr>
+              </thead>
+              <tbody>
+                {buildGuessTable}
+              </tbody>
+            </Table>
           </div>
-
-          {/* <Guess /> */}
         </div>
       </div>
     )

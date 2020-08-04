@@ -8,7 +8,7 @@ import {Button,
         DropdownToggle, 
         UncontrolledDropdown, 
       } from 'reactstrap';
-import { makeNewGuess } from '../../Helpers/Data/GuessData';
+import { makeNewGuess, getOldGuesses } from '../../Helpers/Data/GuessData';
 import { saveCurrentGame } from '../../Helpers/Data/GameData';
 
 import './guessCard.scss';
@@ -39,7 +39,7 @@ class GuessCard extends React.Component {
 
   weaponPicker = (e) => {
     var murderWeapon = e.target.id;
-    this.setState({answer: { weapon: murderWeapon}})  
+    // this.setState({answer: { weapon: murderWeapon}})  
 }
 
   suspectPicker = (e) => {

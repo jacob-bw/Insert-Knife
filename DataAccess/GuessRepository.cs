@@ -40,25 +40,25 @@ namespace Insert_Knife.DataAccess
                 var newGuess = db.QueryFirstOrDefault(sql, parameters);
                 return newGuess;
             }
-        } 
+        }
 
-        //public List<Guess> ViewGuesses(int userId)
-        //{
-        //    var sql = @"
-        //                select * from Guess
-        //                join Game on Game.GameId = Guess.GameId
-        //                where Game.UserId = @userId
-        //                order by GuessId
-        //                ";
+        public List<Guess> PrintGuesses(int userId)
+        {
+            var sql = @"
+                        select * from Guess
+                        join Game on Game.GameId = Guess.GameId
+                        where Game.UserId = @userId
+                        order by GuessId
+                        ";
 
-        //    var parameters = new { UserId = userId };
+            var parameters = new { UserId = userId };
 
-        //    using (var db = new SqlConnection(ConnectionString))
-        //    {
-        //        var guesses = db.Query<Guess>(sql, parameters).ToList();
-        //        return guesses;
-        //    }
-        //}
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var guesses = db.Query<Guess>(sql, parameters).ToList();
+                return guesses;
+            }
+        }
 
 
     }

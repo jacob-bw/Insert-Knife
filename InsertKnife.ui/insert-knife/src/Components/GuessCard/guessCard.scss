@@ -8,3 +8,15 @@
 .btn {
   margin: 5px
 }
+.guessTable{
+  font-weight: bold;
+  border-style: groove;
+  .wrongo {
+    text-decoration-line: line-through;
+    color: darkred;
+  }
+  
+  .yougotitdude {
+    color: darkgreen;
+  }
+}

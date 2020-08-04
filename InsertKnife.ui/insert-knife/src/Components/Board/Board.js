@@ -35,8 +35,6 @@ class Gameboard extends React.Component{
   render() {
     const { getAllRooms, getOldGuesses } = this.state;
 
-    console.log("this is get old guesses", getOldGuesses);
-
     const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} buildRooms={this.buildRooms}/>)
     
     const buildGuessTable = getOldGuesses.map((guess) => <GuessTable key={guess.id} guess={guess}/>)
@@ -47,10 +45,9 @@ class Gameboard extends React.Component{
           <div className="row">
             {BuildGameBoard}
             <GuessCard />
-            <Table>
+            <Table className="guessTable">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Weapon</th>
                   <th>Room</th>
                   <th>Suspect</th>

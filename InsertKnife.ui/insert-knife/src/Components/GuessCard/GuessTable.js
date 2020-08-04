@@ -13,9 +13,11 @@ class GuessTable extends React.Component {
     }
   };
 
-  getAllSuspects();
-  getAllWeapons();
-
+  nameGetter = () => {
+    getAllWeapons();
+    getAllSuspects();
+  }
+  
   // checkAccuracy = () => {
   //   if (targetId === false ){
   //     addclass = "wrongo"
@@ -23,7 +25,7 @@ class GuessTable extends React.Component {
   //     console.log("beepboop");
   //   }
   // }
-  
+
 
   // how to create a function that matches the id with the name
 

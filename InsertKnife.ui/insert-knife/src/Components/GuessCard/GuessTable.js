@@ -1,25 +1,19 @@
 import React from 'react';
 import {getAllWeapons, getAllSuspects} from '../../Helpers/Data/GuessData';
+import { getCurrentGame } from '../../Helpers/Data/GameData';
+
 
 class GuessTable extends React.Component {
   
+  // does it make sense to add "currentGame" to state for comparison?
+  
+
+
   props = this.state;
 
-  fafoWeaponIdTranslator = (guess) => {
-    if (guess.weaponId === 1) {
-      return("Knife")
-    } else if (guess.weaponId === 2) {
-      return("oops it's a gun")
-    }
-  };
-
-  nameGetter = () => {
-    getAllWeapons();
-    getAllSuspects();
-  }
   
   // checkAccuracy = () => {
-  //   if (targetId === false ){
+  //   if (target.id !== answerId ){
   //     addclass = "wrongo"
   //   } else {
   //     addclass = "yougotitdude";
@@ -27,13 +21,16 @@ class GuessTable extends React.Component {
   // }
 
 
-  // how to create a function that matches the id with the name
+  // QUESTIONS FOR HELP W/ JISIE
+  // 1) what am I formatting wrong w/ these functions to not get current game?
+  // 2) what am I formatting wrong in my api call to not snag those names?
+  // 3) I need help comparing the old guesses to the current "answer" within the game
+
 
   render() {
 
     const { guess } = this.props
-
-    console.log("this is a guess before entering the guess table", guess);
+    console.log(guess);
     return(
     <tr>
       <td id={guess.weaponId}>{guess.weaponName}</td>

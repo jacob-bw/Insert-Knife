@@ -10,7 +10,7 @@ const getAllGames = () => new Promise((resolve, reject) => {
 })
 
 const getCurrentGame = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/api/games/${getCurrentUserId}/currentgame`).then((result) => {
+  axios.get(`${baseUrl}/api/user/${getCurrentUserId}/currentgame`).then((result) => {
     const currentGame = result.data;
     resolve(currentGame);
   }).catch((errorFromGetCurrentGame) => reject(errorFromGetCurrentGame));
@@ -18,7 +18,10 @@ const getCurrentGame = () => new Promise((resolve, reject) => {
 
 const saveCurrentGame = (currentGameId, currentRoomId) => {
   axios.put(`${baseUrl}/api/games/savegame`)
+}
 
+const startNewGame = () => {
+  axios.post(`${baseUrl}/api/games/newgame`)
 }
 
 // the way I _think_ it's supposed to work
@@ -35,8 +38,14 @@ const getCurrentRoom = () => new Promise((resolve, reject) => {
   axios.get(`${baseUrl}/api/games/1002/currentgame`).then((result) => {
     const currentRoom = result.data.CurrentRoomId;
     resolve(currentRoom);
-  }).catch((errorFromGetCurrentGame) => reject(errorFromGetCurrentGame));
+  }).catch((errorFromGetCurrentRoom) => reject(errorFromGetCurrentRoom));
 })
 
 
-export { getAllGames, getCurrentGame , getCurrentRoom, saveCurrentGame};
+export { 
+        getAllGames, 
+        getCurrentGame, 
+        getCurrentRoom, 
+        saveCurrentGame,
+        startNewGame,
+      };

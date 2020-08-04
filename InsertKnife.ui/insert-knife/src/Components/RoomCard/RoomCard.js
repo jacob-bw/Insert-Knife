@@ -21,7 +21,7 @@ class RoomCard extends React.Component {
   render(){
     const { room } = this.props;
     return (
-      <div className="card text-center col-2" id={room.roomId} onClick={this.moveToNewRoom} >
+      <div className="card roomCard text-center col-md-2" id={room.roomId} onClick={this.moveToNewRoom} >
         { !this.props.room.occupied
           ? <a className="nav-link disabled" href="#"><i className="fas fa-door-closed"></i></a>
           : <a className="nav-link disabled" href="#"><i className="fas fa-door-open"></i></a>

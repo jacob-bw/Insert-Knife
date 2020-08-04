@@ -3,8 +3,9 @@ import { baseUrl } from '../apiKeys.json';
 import { getCurrentUserId } from './UserData';
 
 const getOldGuesses = () => new Promise ((resolve, reject) => {
-  axios.get(`${baseUrl}/api/user/${getCurrentUserId()}/guesses`).then((result) => {
+  axios.get(`${baseUrl}/api/guess/${getCurrentUserId()}`).then((result) => {
     const oldGuesses = result.data;
+    console.log("this is being returned as old guesses", oldGuesses);
     resolve (oldGuesses);
   }).catch((errorFromGetOldGuesses) => reject(errorFromGetOldGuesses));
 })

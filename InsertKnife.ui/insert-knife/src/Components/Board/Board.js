@@ -14,6 +14,8 @@ class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
     getOldGuesses: [],
+    newGuess: [],
+    solved: false,
   }
 
   buildRooms = () => {
@@ -26,6 +28,8 @@ class Gameboard extends React.Component{
     getOldGuesses()
     .then(getOldGuesses => this.setState({ getOldGuesses: getOldGuesses }))
   }
+
+
 
   componentDidMount() {
     this.buildRooms();

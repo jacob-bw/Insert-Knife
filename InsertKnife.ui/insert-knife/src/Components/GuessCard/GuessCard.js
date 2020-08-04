@@ -8,8 +8,8 @@ import {Button,
         DropdownToggle, 
         UncontrolledDropdown, 
       } from 'reactstrap';
-import { makeNewGuess, getOldGuesses } from '../../Helpers/Data/GuessData';
-import { saveCurrentGame } from '../../Helpers/Data/GameData';
+import { makeNewGuess } from '../../Helpers/Data/GuessData';
+import { saveCurrentGame, startNewGame } from '../../Helpers/Data/GameData';
 
 import './guessCard.scss';
 
@@ -18,15 +18,15 @@ class GuessCard extends React.Component {
   props = this.state;
 
   
-  // // getWeapons = () => {
-  // //   getAllWeapons()
-  // //   .then(getAllWeapons => this.setState({getAllWeapons: getAllWeapons}))
-  // // }
+  // getWeapons = () => {
+  //   getAllWeapons()
+  //   .then(getAllWeapons => this.setState({getAllWeapons: getAllWeapons}))
+  // }
 
-  // // getSuspects = () => {
-  // //   getAllSuspects()
-  // //   .then(getAllSuspects => this.setState(({getSuspects: getAllSuspects})))
-  // // }
+  // getSuspects = () => {
+  //   getAllSuspects()
+  //   .then(getAllSuspects => this.setState(({getSuspects: getAllSuspects})))
+  // }
 
   // componentDidMount(){
   //   this.getWeapons();
@@ -37,21 +37,24 @@ class GuessCard extends React.Component {
     saveCurrentGame();
   }
 
+  // still running into problems w/ getting dropdown to put data into state
+
   weaponPicker = (e) => {
     var murderWeapon = e.target.id;
-    // this.setState({answer: { weapon: murderWeapon}})  
-}
+    console.log('the murderweapon id is', murderWeapon)
+    this.setState({newGuess: murderWeapon}); 
+  }
 
   suspectPicker = (e) => {
     var allegedMurderer = e.target.id;
     console.log(allegedMurderer);
-    return(allegedMurderer);
   }
 
   render () {
 
+    const { solved } = this.props;
     return(
-      <Card>
+      <Card className>
         <CardBody>
           <CardTitle><h5>Solve The Murder</h5></CardTitle>
           <UncontrolledDropdown className="suspectMenu"  size="sm">
@@ -85,7 +88,10 @@ class GuessCard extends React.Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           {/* On successful guess, swap "figure it out" text for "start new game" */}
-          <Button color="success" size="sm" id="makeGuess">Figure It Out</Button>
+          { !this.props.solved
+            ? <Button color="success" size="sm" id="makeGuess" onclick={makeNewGuess}>Figure It Out</Button>
+            : <Button color="success" size="sm" id="newGame" onclick={startNewGame}>Start New Game</Button>
+          }
           <Button color="primary" size="sm" id="saveGame" onClick={this.saveGame}>Save Game</Button>
         </CardBody>
       </Card>

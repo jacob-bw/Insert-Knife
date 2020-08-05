@@ -12,7 +12,10 @@ namespace Insert_Knife.Models
         public int SuspectId { get; set; }
         public int RoomId { get; set; }
         public int GameId { get; set; }
-        public bool Correct { get; set; }
         public int UserId { get; set; }
+        public string WeaponName { get; set; }
+        public string SuspectName { get; set; }
+        public string RoomName { get; set; }
+
     }
 }

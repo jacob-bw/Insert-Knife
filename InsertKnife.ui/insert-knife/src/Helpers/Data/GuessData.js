@@ -3,7 +3,7 @@ import { baseUrl } from '../apiKeys.json';
 import { getCurrentUserId } from './UserData';
 
 const getOldGuesses = () => new Promise ((resolve, reject) => {
-  axios.get(`${baseUrl}/api/${getCurrentUserId}/guesses`).then((result) => {
+  axios.get(`${baseUrl}/api/guess/${getCurrentUserId()}`).then((result) => {
     const oldGuesses = result.data;
     resolve (oldGuesses);
   }).catch((errorFromGetOldGuesses) => reject(errorFromGetOldGuesses));
@@ -23,7 +23,7 @@ const getAllSuspects = () => new Promise((resolve, reject) => {
   }).catch((errorFromGetAllSuspects) => reject(errorFromGetAllSuspects));
 })
 
-const makeNewGuess = (guessWeaponId, guessSuspectId) => axios.post(`${baseUrl}/guess/newguess/${guessWeaponId}/${guessSuspectId}`);
+const makeNewGuess = (guessWeaponId, guessSuspectId) => axios.post(`${baseUrl}/api/guess/newguess/${guessWeaponId}/${guessSuspectId}`);
 
 export { 
         getOldGuesses, 
@@ -31,14 +31,3 @@ export {
         getAllWeapons,
         getAllSuspects
        };
-
-// WHEN RESUMING WORK
-// - build dropdown items using the table data for weapons and suspects
-
-// - iterate over the table data and pull both names and IDs
-
-// - pass selected data to the url for weapon and suspect, room and game IDs will be pulled separately
-
-// - check guess against game 
-
-// - print old guess w/ data color coded

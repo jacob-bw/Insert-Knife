@@ -23,16 +23,26 @@ namespace Insert_Knife.Controllers
             _guessRepository = guessRepository;
             _gameRepository = gameRepository;
 
-    }
+        }
+    
 
-    [HttpPost("newguess/{guessWeaponId}/{guessSuspectId}")]
+        [HttpPost("newguess/{guessWeaponId}/{guessSuspectId}")]
         public IActionResult MakeNewGuess(int guessWeaponId, int guessSuspectId)
         {
             // currently hardcoded w/ couchnap userId for retrieving "active" games
             var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
             var currentRoomId = _gameRepository.ViewCurrentGame(1002).CurrentRoomId;
             var potentialSolution = _guessRepository.MakeNewGuess(guessWeaponId, guessSuspectId, currentRoomId, currentGameId);
-            return Ok(potentialSolution);
+            return Created("created", potentialSolution);
         }
+
+        [HttpGet("{userId}")]
+        public IActionResult PrintGuesses()
+        {
+            var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
+            var guesses = _guessRepository.PrintGuesses(1002, currentGameId);
+            return Ok(guesses);
+        }
+        
     }
 }

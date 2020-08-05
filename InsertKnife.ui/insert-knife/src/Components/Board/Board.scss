@@ -7,11 +7,16 @@
   .row {
     justify-content: center;
 
-    
+    .guessTable {
+      max-width: 400px;
+    }
   }
-  // .card {
-  //   margin: 10px;
-  //   height: 200px;
-  //   width: 200px;
-  // }
+  .roomCard {
+    min-height: 180px;
+    margin: 20px;
+  }
+
+  .guessCard {
+    height: auto;
+  }
 }

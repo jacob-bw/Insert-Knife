@@ -8,8 +8,8 @@ import {Button,
         DropdownToggle, 
         UncontrolledDropdown, 
       } from 'reactstrap';
-import { makeNewGuess } from '../../Helpers/Data/GuessData';
-import { saveCurrentGame } from '../../Helpers/Data/GameData';
+import { makeNewGuess, getOldGuesses } from '../../Helpers/Data/GuessData';
+import { saveCurrentGame, startNewGame } from '../../Helpers/Data/GameData';
 
 import './guessCard.scss';
 
@@ -17,39 +17,38 @@ class GuessCard extends React.Component {
 
   props = this.state;
 
-  
-  // // getWeapons = () => {
-  // //   getAllWeapons()
-  // //   .then(getAllWeapons => this.setState({getAllWeapons: getAllWeapons}))
-  // // }
+  solveTheMystery = (e) => {
+    e.preventDefault();
+    console.log("you made a guess!");
+    var weaponGuess = this.state.murderWeapon;
+    var jaccuse = this.state.murderSuspect;
+    makeNewGuess(weaponGuess, jaccuse)
+    .then(this.props.buildTable)
+    .catch((err) => console.error(err));
+    
+  }
 
-  // // getSuspects = () => {
-  // //   getAllSuspects()
-  // //   .then(getAllSuspects => this.setState(({getSuspects: getAllSuspects})))
-  // // }
-
-  // componentDidMount(){
-  //   this.getWeapons();
-  //   this.getSuspects();
-  // }
-
-  saveGame = () =>{
+  saveGame = () => {
     saveCurrentGame();
+  }
+
+  startNewGame = () => {
+    startNewGame();
   }
 
   weaponPicker = (e) => {
     var murderWeapon = e.target.id;
-    this.setState({answer: { weapon: murderWeapon}})  
-}
+    this.setState({murderWeapon: murderWeapon}); 
+  }
 
+  // sending API call correctly but not accurately defining suspect. correctly identifying weapon, though.
   suspectPicker = (e) => {
     var allegedMurderer = e.target.id;
-    console.log(allegedMurderer);
-    return(allegedMurderer);
+    this.setState({murderSuspect: allegedMurderer})
   }
 
   render () {
-
+    
     return(
       <Card>
         <CardBody>
@@ -58,7 +57,7 @@ class GuessCard extends React.Component {
             <DropdownToggle caret>
               Select Suspect
             </DropdownToggle>
-            <DropdownMenu>
+            <DropdownMenu >
               <DropdownItem id="1" onClick={this.suspectPicker}>Ms Scarlett</DropdownItem>
               <DropdownItem id="2" onClick={this.suspectPicker}>Mr Green</DropdownItem>
               <DropdownItem id="3" onClick={this.suspectPicker}>Mr White</DropdownItem>
@@ -85,7 +84,12 @@ class GuessCard extends React.Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           {/* On successful guess, swap "figure it out" text for "start new game" */}
-          <Button color="success" size="sm" id="makeGuess">Figure It Out</Button>
+          {/* { !this.props.solved
+            ? <Button color="success" size="sm" id="makeGuess" onclick={this.solveTheMystery}>Figure It Out</Button>
+            : <Button color="success" size="sm" id="newGame" onclick={startNewGame}>Start New Game</Button>
+          } */}
+
+          <Button color="success" size="sm" id="makeGuess" onClick={this.solveTheMystery}>Figure It Out</Button>
           <Button color="primary" size="sm" id="saveGame" onClick={this.saveGame}>Save Game</Button>
         </CardBody>
       </Card>

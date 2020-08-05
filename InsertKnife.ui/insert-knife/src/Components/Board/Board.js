@@ -5,7 +5,8 @@ import GuessTable from '../GuessCard/GuessTable';
 
 import {Table} from 'reactstrap';
 import { getAllRooms } from '../../Helpers/Data/RoomData';
-import { getOldGuesses } from '../../Helpers/Data/GuessData';
+import { getOldGuesses, checkLastGuess } from '../../Helpers/Data/GuessData';
+import { getCurrentGame } from '../../Helpers/Data/GameData';
 
 import './Board.scss';
 
@@ -26,6 +27,24 @@ class Gameboard extends React.Component{
     solved: false,
   }
 
+
+  // first set the solutions in state
+  // second check guess values against solution
+  // lastly highlight correct answers
+  // && print "YOU WON" if all 3 params match
+
+  setUpGame = () => {
+    getCurrentGame()
+    .then(getCurrentGame => this.setState({currentGame: 
+      {
+        solutionRoom: getCurrentGame.answerRoomId, 
+        solutionWeapon: getCurrentGame.answerWeaponId, 
+        solutionSuspect: getCurrentGame.answerSuspectId
+      } 
+    }))
+  }
+
+  
   buildRooms = () => {
     getAllRooms()
     .then(getAllRooms => this.setState({getAllRooms: getAllRooms}))
@@ -36,11 +55,15 @@ class Gameboard extends React.Component{
     .then(getOldGuesses => this.setState({ getOldGuesses: getOldGuesses }))
   }
 
-
+  checkGuess = () => {
+    checkLastGuess()
+    .then(checkLastGuess => this.setState({solved: checkLastGuess}))
+  }
 
   componentDidMount() {
     this.buildRooms();
     this.buildTable();
+    this.setUpGame();
   }
 
   render() {
@@ -48,14 +71,14 @@ class Gameboard extends React.Component{
 
     const BuildGameBoard = getAllRooms.map((room) => <RoomCard key={room.id} room={room} buildRooms={this.buildRooms}/>)
     
-    const buildGuessTable = getOldGuesses.map((guess) => <GuessTable key={guess.id} guess={guess}/>)
+    const buildGuessTable = getOldGuesses.map((guess) => <GuessTable key={guess.id} guess={guess} currentGame={this.state.currentGame}/>)
 
     return (
       <div>
         <div className="gameBoard container">
           <div className="row">
             {BuildGameBoard}
-            <GuessCard buildTable={this.buildTable}/>
+            <GuessCard buildTable={this.buildTable}  solved={this.state.solved}/>
             <Table className="guessTable">
               <thead>
                 <tr>

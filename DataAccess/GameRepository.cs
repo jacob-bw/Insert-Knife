@@ -41,8 +41,8 @@ namespace Insert_Knife.DataAccess
                         ";
 
             var sqlInsert = @"
-                            insert into Game (AnswerSuspectId, AnswerRoomId, AnswerWeaponId)
-                            values (@AnswerSuspectId, @AnswerRoomId, @AnswerWeaponId)
+                            insert into Game (AnswerSuspectId, AnswerRoomId, AnswerWeaponId, UserId)
+                            values (@AnswerSuspectId, @AnswerRoomId, @AnswerWeaponId, 1002)
                             ";
             
 
@@ -100,8 +100,6 @@ namespace Insert_Knife.DataAccess
         }
 
         public Game ViewCurrentGame(int userId)
-            // where userId matches current user
-            // order by date ascending
         {
 
             var sql = @"

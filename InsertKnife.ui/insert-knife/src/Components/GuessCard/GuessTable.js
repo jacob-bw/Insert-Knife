@@ -1,31 +1,33 @@
 import React from 'react';
 
 class GuessTable extends React.Component {
-  
-  props = this.state;
 
-  
-  // checkAccuracy = () => {
-  //   if (target.id !== answerId ){
-  //     addclass = "wrongo"
-  //   } else {
-  //     addclass = "yougotitdude";
-  //   }
+
+  // letTheMysteryBe = () => {
+  //   var guess  = this.props;
+  //   if ( 
+  //     guess.weaponId == currentGame.solutionWeapon &&
+  //     guess.roomId == currentGame.solutionRoom &&
+  //     guess.suspectId == currentGame.solutionSuspect
+  //     ) {
+  //       this.setState({ solved: true});
+  //       console.log("case closed, ya solved it")
+  //     } else {
+  //       console.log("Way to go, Fart Detective. Try again.")
+  //     }
   // }
-
-
-  // QUESTIONS FOR HELP W/ JISIE
-  // I need help comparing the old guesses to the current "answer" within the game
 
 
   render() {
 
-    const { guess } = this.props
+    const { guess, currentGame } = this.props;
+
+
     return(
     <tr>
-    <td id={guess.weaponId}>{guess.weaponName}</td>
-    <td id={guess.roomId}>{guess.roomName}</td>
-    <td id={guess.suspectId}>{guess.suspectName}</td>
+      <td id={guess.weaponId} className={ guess.weaponId === currentGame.solutionWeapon ? "checked" : "wrecked"}>{guess.weaponName}</td>
+      <td id={guess.roomId} className={ guess.roomId === currentGame.solutionRoom ? "checked" : "wrecked"}>{guess.roomName}</td>
+      <td id={guess.suspectId} className={ guess.suspectId === currentGame.solutionSuspect ? "checked" : "wrecked"}>{guess.suspectName}</td>
     </tr>
     )
   }

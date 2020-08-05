@@ -8,7 +8,7 @@ import {Button,
         DropdownToggle, 
         UncontrolledDropdown, 
       } from 'reactstrap';
-import { makeNewGuess, getOldGuesses } from '../../Helpers/Data/GuessData';
+import { makeNewGuess, checkLastGuess } from '../../Helpers/Data/GuessData';
 import { saveCurrentGame, startNewGame } from '../../Helpers/Data/GameData';
 
 import './guessCard.scss';
@@ -17,23 +17,27 @@ class GuessCard extends React.Component {
 
   props = this.state;
 
+
   solveTheMystery = (e) => {
     e.preventDefault();
-    console.log("you made a guess!");
     var weaponGuess = this.state.murderWeapon;
     var jaccuse = this.state.murderSuspect;
     makeNewGuess(weaponGuess, jaccuse)
     .then(this.props.buildTable)
     .catch((err) => console.error(err));
-    
   }
 
-  saveGame = () => {
+  saveGame = (e) => {
     saveCurrentGame();
+    var saveGameId = e.target.id;
+    console.log("game", saveGameId, "saved");
   }
 
-  startNewGame = () => {
-    startNewGame();
+  startNewGame = (e) => {
+    e.preventDefault();
+    startNewGame()
+    .then(this.props.buildTable)
+    .catch((errFromStartNewGame) => console.error(errFromStartNewGame))
   }
 
   weaponPicker = (e) => {
@@ -41,14 +45,22 @@ class GuessCard extends React.Component {
     this.setState({murderWeapon: murderWeapon}); 
   }
 
-  // sending API call correctly but not accurately defining suspect. correctly identifying weapon, though.
   suspectPicker = (e) => {
     var allegedMurderer = e.target.id;
     this.setState({murderSuspect: allegedMurderer})
   }
 
+  checkYourself = () => {
+    console.log(checkLastGuess(1002));
+    var results = checkLastGuess(1002);
+    if (results = "true"){
+      alert("Ya did it!")
+    }
+    // this.setState({solved: checkLastGuess()})
+  }
+
   render () {
-    
+
     return(
       <Card>
         <CardBody>
@@ -83,14 +95,14 @@ class GuessCard extends React.Component {
               <DropdownItem id="8" onClick={this.weaponPicker}>Scorpion</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-          {/* On successful guess, swap "figure it out" text for "start new game" */}
-          {/* { !this.props.solved
-            ? <Button color="success" size="sm" id="makeGuess" onclick={this.solveTheMystery}>Figure It Out</Button>
-            : <Button color="success" size="sm" id="newGame" onclick={startNewGame}>Start New Game</Button>
+          {/* { !solved
+            ? <Button color="success" size="sm" id="newGame" onclick={this.startNewGame}>Start New Game</Button>
+            : <div></div>
           } */}
-
           <Button color="success" size="sm" id="makeGuess" onClick={this.solveTheMystery}>Figure It Out</Button>
           <Button color="primary" size="sm" id="saveGame" onClick={this.saveGame}>Save Game</Button>
+          <Button color="warning" size="sm" id="newGame" onClick={this.startNewGame}>Start New Game</Button>
+          <Button color="danger" size="sm" id="checkIt" onClick={this.checkYourself}>Check your Guess</Button>
         </CardBody>
       </Card>
     )

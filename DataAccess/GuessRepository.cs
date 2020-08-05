@@ -70,6 +70,31 @@ namespace Insert_Knife.DataAccess
             }
         }
 
+        public Guess LastGuess(int userId)
+        {
+            var sql = @"
+                        select * from Guess
+                        join Game on Game.GameId = Guess.GameId
+                        where GuessId = (select top(1) Guess.GuessId from Guess
+                        join Game on Game.GameId = Guess.GameId
+                        where Game.UserId = @userId
+                        and Game.GameId = (select top(1) GameId from Game
+                        where UserId = @userId
+                        Order by GameId desc))
+                        ";
+
+            using (var db = new SqlConnection(ConnectionString))
+            {
+                var parameters = new
+                {
+                    userId = userId,
+                };
+
+                var newestGuess = db.QueryFirstOrDefault<Guess>(sql, parameters);
+                return newestGuess;
+            }
+        }
+
 
     }
 }

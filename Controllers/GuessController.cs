@@ -22,7 +22,6 @@ namespace Insert_Knife.Controllers
         {
             _guessRepository = guessRepository;
             _gameRepository = gameRepository;
-
         }
     
 
@@ -43,6 +42,12 @@ namespace Insert_Knife.Controllers
             var guesses = _guessRepository.PrintGuesses(1002, currentGameId);
             return Ok(guesses);
         }
-        
+
+        [HttpGet("last")]
+        public IActionResult CheckGuess()
+        {
+            var lastGuess = _guessRepository.LastGuess(1002);
+            return Ok(lastGuess);
+        }
     }
 }

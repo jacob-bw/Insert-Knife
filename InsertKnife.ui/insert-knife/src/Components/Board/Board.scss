@@ -9,6 +9,14 @@
 
     .guessTable {
       max-width: 400px;
+      .checked {
+        font-size: 1em;
+        color: darkgreen;
+      }
+      .wrecked {
+        text-decoration-line: line-through;
+        color: darkred;
+      }
     }
   }
   .roomCard {

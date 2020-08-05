@@ -33,13 +33,14 @@ namespace Insert_Knife.Controllers
             var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
             var currentRoomId = _gameRepository.ViewCurrentGame(1002).CurrentRoomId;
             var potentialSolution = _guessRepository.MakeNewGuess(guessWeaponId, guessSuspectId, currentRoomId, currentGameId);
-            return Ok(potentialSolution);
+            return Created("created", potentialSolution);
         }
 
         [HttpGet("{userId}")]
-        public IActionResult PrintGuesses(int userId)
+        public IActionResult PrintGuesses()
         {
-            var guesses = _guessRepository.PrintGuesses(1002);
+            var currentGameId = _gameRepository.ViewCurrentGame(1002).GameId;
+            var guesses = _guessRepository.PrintGuesses(1002, currentGameId);
             return Ok(guesses);
         }
         

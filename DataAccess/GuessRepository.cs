@@ -24,6 +24,7 @@ namespace Insert_Knife.DataAccess
         {
             var sql = @"
                         insert into Guess (WeaponId, SuspectId, RoomId, GameId)
+                        output inserted.*
                         values (@guessWeaponId, @guessSuspectId, @currentRoomId, @currentGameId)
                         ";
 
@@ -37,24 +38,33 @@ namespace Insert_Knife.DataAccess
 
             using (var db = new SqlConnection(ConnectionString))
             {
-                var newGuess = db.QueryFirstOrDefault(sql, parameters);
+                var newGuess = db.QueryFirstOrDefault<Guess>(sql, parameters);
                 return newGuess;
             }
         }
 
-        public List<Guess> PrintGuesses(int userId)
+        public List<Guess> PrintGuesses(int userId, int gameId)
         {
+
             var sql = @"
                         select * from Guess
                         join Game on Game.GameId = Guess.GameId
+                        join Weapons on Guess.WeaponId= Weapons.WeaponId
+                        join Suspects on Guess.SuspectId = Suspects.SuspectId
+                        join Rooms on Guess.RoomId = Rooms.RoomId
                         where Game.UserId = @userId
-                        order by GuessId
+                        and Game.GameId = (select top(1) GameId from Game
+                        where UserId = @userId
+                        Order by GameId desc)
                         ";
-
-            var parameters = new { UserId = userId };
 
             using (var db = new SqlConnection(ConnectionString))
             {
+                var parameters = new
+                {
+                    userId = userId,
+                };
+
                 var guesses = db.Query<Guess>(sql, parameters).ToList();
                 return guesses;
             }

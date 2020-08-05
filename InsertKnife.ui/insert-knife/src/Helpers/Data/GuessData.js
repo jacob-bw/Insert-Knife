@@ -5,7 +5,6 @@ import { getCurrentUserId } from './UserData';
 const getOldGuesses = () => new Promise ((resolve, reject) => {
   axios.get(`${baseUrl}/api/guess/${getCurrentUserId()}`).then((result) => {
     const oldGuesses = result.data;
-    console.log("this is being returned as old guesses", oldGuesses);
     resolve (oldGuesses);
   }).catch((errorFromGetOldGuesses) => reject(errorFromGetOldGuesses));
 })
@@ -24,7 +23,7 @@ const getAllSuspects = () => new Promise((resolve, reject) => {
   }).catch((errorFromGetAllSuspects) => reject(errorFromGetAllSuspects));
 })
 
-const makeNewGuess = (guessWeaponId, guessSuspectId) => axios.post(`${baseUrl}/guess/newguess/${guessWeaponId}/${guessSuspectId}`);
+const makeNewGuess = (guessWeaponId, guessSuspectId) => axios.post(`${baseUrl}/api/guess/newguess/${guessWeaponId}/${guessSuspectId}`);
 
 export { 
         getOldGuesses, 

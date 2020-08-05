@@ -14,7 +14,15 @@ class Gameboard extends React.Component{
   state = {
     getAllRooms: [],
     getOldGuesses: [],
-    newGuess: [],
+    newGuess: {
+      murderWeapon: '',
+      murderSuspect: ''
+    },
+    currentGame: {
+      solutionRoom: '',
+      solutionWeapon: '',
+      solutionSuspect: ''
+    },
     solved: false,
   }
 
@@ -24,7 +32,6 @@ class Gameboard extends React.Component{
   }
 
   buildTable = () => {
-    console.log(getOldGuesses);
     getOldGuesses()
     .then(getOldGuesses => this.setState({ getOldGuesses: getOldGuesses }))
   }
@@ -48,7 +55,7 @@ class Gameboard extends React.Component{
         <div className="gameBoard container">
           <div className="row">
             {BuildGameBoard}
-            <GuessCard />
+            <GuessCard buildTable={this.buildTable}/>
             <Table className="guessTable">
               <thead>
                 <tr>
